@@ -1,0 +1,4 @@
+1.pip install django-admin-interface
+2.Добавить в install_App
+3.'admin_interface'  - 'colorfield'
+4.Провести миграцию

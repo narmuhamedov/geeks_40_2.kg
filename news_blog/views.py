@@ -3,6 +3,32 @@ from django.http import HttpResponse
 from . import models
 
 
+# drink  tags
+
+def drink_tags_view(request):
+    if request.method == 'GET':
+        drink_tags = models.Products.objects.filter(tags__name='Вода').order_by('-id')
+        return render(
+            request,
+            template_name='products/drink_tags.html',
+            context={'drink_tags': drink_tags}
+        )
+
+
+# all products
+
+def all_products(request):
+    if request.method == 'GET':
+        products = models.Products.objects.filter().order_by('-id')
+        return render(
+            request,
+            template_name='products/all_products.html',
+            context={
+                'products': products
+            }
+        )
+
+
 # Detail Employees
 def employees_detail_view(request, id):
     if request.method == "GET":

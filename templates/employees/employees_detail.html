@@ -1,4 +1,10 @@
-<h1>Имя - {{ emp_id.name }} </h1>
+{% load static %}
+
+{% include '../header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<h1 class="h1_name">Имя - {{ emp_id.name }} </h1>
 <p>Почта - {{ emp_id.email }}</p>
 <img src="{{ emp_id.image.url }}" width="350" height="250">
 <p>О сотруднике - {{ emp_id.about_emp }}</p>
@@ -7,3 +13,18 @@
 <data>Дата рождения - {{ emp_id.date_of_birth }}</data>
 <a href="{{ emp_id.github }}">Перейти в GITHUB</a>
 <data>Дата создания поста - {{ emp_id.created_at }}</data>
+
+<ul>
+    {% for i in emp_id.reviews_employees.all %}
+
+    <li>
+        <h1>{{ i.stars }}</h1>
+        <p>{{ i.text }}</p>
+        <p>{{ i.created_at }}</p>
+    </li>
+
+    {% endfor %}
+</ul>
+
+
+{% include '../footer.html' %}

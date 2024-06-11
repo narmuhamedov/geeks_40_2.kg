@@ -1,32 +1,55 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from . import models
+from . import models, forms
 
 
-# drink  tags
+# CRUD CREATE-READ-UPDATE-DELETE
 
-def drink_tags_view(request):
-    if request.method == 'GET':
-        drink_tags = models.Products.objects.filter(tags__name='Вода').order_by('-id')
-        return render(
-            request,
-            template_name='products/drink_tags.html',
-            context={'drink_tags': drink_tags}
-        )
+# edit employees
+def edit_employee_view(request, id):
+    emp_id = get_object_or_404(models.Employees, id=id)
+    if request.method == 'POST':
+        form = forms.EmployeeForm(request.POST, instance=emp_id)
+        form.save()
+        return HttpResponse('<h3>Employee updated successfully!</h3>'
+                            '<a href="/employees/">Список сотрудников</a>')
+    else:
+        form = forms.EmployeeForm(instance=emp_id)
+    return render(
+        request,
+        template_name='employees/edit_employee.html',
+        context={
+            'form': form,
+            'emp_id': emp_id
+        }
+    )
 
 
-# all products
+# delete employee
+def drop_employee_view(request, id):
+    emp_id = get_object_or_404(models.Employees, id=id)
+    emp_id.delete()
+    return HttpResponse('<h3>Employee delete successfully!</h3>'
+                        '<a href="/employees/">Список сотрудников</a>')
 
-def all_products(request):
-    if request.method == 'GET':
-        products = models.Products.objects.filter().order_by('-id')
-        return render(
-            request,
-            template_name='products/all_products.html',
-            context={
-                'products': products
-            }
-        )
+
+# create employee
+
+def create_employee_view(request):
+    if request.method == "POST":
+        form = forms.EmployeeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('<h3>Employee created successfully!</h3>'
+                                '<a href="/employees/">Список сотрудников</a>')
+    else:
+        form = forms.EmployeeForm()
+
+    return render(
+        request,
+        template_name='employees/create_emp.html',
+        context={'form': form}
+    )
 
 
 # Detail Employees
@@ -52,6 +75,32 @@ def employees_list_view(request):
             template_name='employees/employees_list.html',
             context={
                 'emp': queryset
+            }
+        )
+
+
+# drink  tags
+
+def drink_tags_view(request):
+    if request.method == 'GET':
+        drink_tags = models.Products.objects.filter(tags__name='Вода').order_by('-id')
+        return render(
+            request,
+            template_name='products/drink_tags.html',
+            context={'drink_tags': drink_tags}
+        )
+
+
+# all products
+
+def all_products(request):
+    if request.method == 'GET':
+        products = models.Products.objects.filter().order_by('-id')
+        return render(
+            request,
+            template_name='products/all_products.html',
+            context={
+                'products': products
             }
         )
 

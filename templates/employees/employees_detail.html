@@ -9,7 +9,17 @@
 <img src="{{ emp_id.image.url }}" width="350" height="250">
 <p>О сотруднике - {{ emp_id.about_emp }}</p>
 <p>Должность - {{ emp_id.programming_status }}</p>
-<a href="{{ emp_id.rezume.url }}" download>Скачать резюме</a>
+
+{% if emp_id.rezume %}
+{% if emp_id.rezume.url %}
+    <a href="{{ emp_id.rezume.url }}" download>Скачать резюме</a>
+{% else %}
+    <p>Резюме не загруженно</p>
+{% endif %}
+{% endif %}
+
+
+
 <data>Дата рождения - {{ emp_id.date_of_birth }}</data>
 <a href="{{ emp_id.github }}">Перейти в GITHUB</a>
 <data>Дата создания поста - {{ emp_id.created_at }}</data>

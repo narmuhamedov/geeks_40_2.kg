@@ -42,14 +42,14 @@ class Employees(models.Model):
         ('UX-UI Development', 'UX-UI Development'),
     )
 
-    name = models.CharField(max_length=100)
-    email = models.EmailField(default='@gmail.com')
-    image = models.ImageField(upload_to='images/')
+    name = models.CharField(max_length=100, verbose_name='Напишите имя сотрудника', null=True)
+    email = models.EmailField(default='@gmail.com', verbose_name='Укажите почту сотрудника', null=True)
+    image = models.ImageField(upload_to='images/', verbose_name='Загрузите фото', null=True)
     about_emp = models.TextField()
-    programming_status = models.CharField(max_length=100, choices=PROGRAMMING_STATUS, null=True)
-    rezume = models.FileField(upload_to='rezume/')
-    date_of_birth = models.DateField()
-    github = models.URLField()
+    programming_status = models.CharField(max_length=100, choices=PROGRAMMING_STATUS, verbose_name='Укажите статус программиста', null=True)
+    rezume = models.FileField(upload_to='rezume/', verbose_name='Загрузите резюме', null=True, blank=True)
+    date_of_birth = models.DateField(verbose_name='Укажите дату рождения', null=True)
+    github = models.URLField(verbose_name='Загрузите ваш гит', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

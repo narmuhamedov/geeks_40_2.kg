@@ -1,6 +1,9 @@
 {% load static %}
 {% include '../header.html' %}
 <link rel="stylesheet" href="{% static 'css/crud_emp.css' %}">
+
+
+
 <button type="button" class="btn btn-success"><a href="/create_employee/" class="emp_url">Добавить сотрудника</a></button>
 <h1>Список сотрудников</h1>
 {% for i in emp %}
@@ -18,6 +21,17 @@
 <br>
 {% endfor %}
 
-
+{% for j in quote %}
+<div class="card">
+  <div class="card-body">
+    {{ j.text }}
+    <p>
+      {{ j.author }}
+    </p>
+  </div>
+</div>
+<br>
+{%endfor%}
+<br>
 
 {% include '../footer.html' %}

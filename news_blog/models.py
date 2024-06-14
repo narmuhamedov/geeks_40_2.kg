@@ -2,8 +2,6 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
-
-
 class Tag(models.Model):
     name = models.CharField(max_length=120)
 
@@ -21,17 +19,12 @@ class Products(models.Model):
         return self.title
 
 
+class Quote(models.Model):
+    text = models.TextField()
+    author = models.CharField(max_length=120)
 
-
-
-
-
-
-
-
-
-
-
+    def __str__(self):
+        return f'{self.text} - {self.author}'
 
 
 class Employees(models.Model):
@@ -46,7 +39,8 @@ class Employees(models.Model):
     email = models.EmailField(default='@gmail.com', verbose_name='Укажите почту сотрудника', null=True)
     image = models.ImageField(upload_to='images/', verbose_name='Загрузите фото', null=True)
     about_emp = models.TextField()
-    programming_status = models.CharField(max_length=100, choices=PROGRAMMING_STATUS, verbose_name='Укажите статус программиста', null=True)
+    programming_status = models.CharField(max_length=100, choices=PROGRAMMING_STATUS,
+                                          verbose_name='Укажите статус программиста', null=True)
     rezume = models.FileField(upload_to='rezume/', verbose_name='Загрузите резюме', null=True, blank=True)
     date_of_birth = models.DateField(verbose_name='Укажите дату рождения', null=True)
     github = models.URLField(verbose_name='Загрузите ваш гит', null=True)

@@ -7,11 +7,12 @@ urlpatterns = [
 
 
 
-    path('employees/', views.employees_list_view),
-    path('employees/<int:id>/', views.employees_detail_view),
-    path('employees/<int:id>/delete/', views.drop_employee_view),
-    path('employees/<int:id>/update/', views.edit_employee_view),
-    path('create_employee/', views.create_employee_view),
+    path('employees/', views.EmployeesListView.as_view(), name='employees_aaa'),
+    path('employees/<int:id>/', views.EmployeeDetailView.as_view()),
+    path('employees/<int:id>/delete/', views.DeleteEmployeeView.as_view()),
+    path('employees/<int:id>/update/', views.EditEmployeeView.as_view()),
+    path('create_employee/', views.CreateEmployeeView.as_view()),
+    path('search/', views.SearchView.as_view(), name='search'),
 
 
 

@@ -29,7 +29,6 @@ from django.dispatch import receiver
 
 
 class CustomUser(User):
-
     GENDER_CHOICES = (
         ('Male', 'Male'),
         ('Female', 'Female')
@@ -44,8 +43,9 @@ class CustomUser(User):
     gender = models.CharField(max_length=100, choices=GENDER_CHOICES)
     club = models.CharField(max_length=20, default='Клуб не определен')
 
+
 @receiver(post_save, sender=CustomUser)
-def set_club(sender, instance, create ,**kwargs):
+def set_club(sender, instance, created, **kwargs):
     print('Сигнал успешен пользователь зарегался')
     age = instance.age
     if age < 5:
@@ -59,4 +59,3 @@ def set_club(sender, instance, create ,**kwargs):
     else:
         instance.club = 'Клуб не определен'
     instance.save()
-

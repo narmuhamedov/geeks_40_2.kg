@@ -7,7 +7,7 @@ urlpatterns = [
 
 
 
-    path('employees/', views.EmployeesListView.as_view(), name='employees_aaa'),
+    path('', views.EmployeesListView.as_view(), name='employees_aaa'),
     path('employees/<int:id>/', views.EmployeeDetailView.as_view()),
     path('employees/<int:id>/delete/', views.DeleteEmployeeView.as_view()),
     path('employees/<int:id>/update/', views.EditEmployeeView.as_view()),

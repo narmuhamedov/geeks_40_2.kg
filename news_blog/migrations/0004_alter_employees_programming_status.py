@@ -6,13 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news_blog', '0003_remove_employees_age'),
+        ("news_blog", "0003_remove_employees_age"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='employees',
-            name='programming_status',
-            field=models.CharField(choices=[('Full Stack', 'Full Stack'), ('Backend Development', 'Backend Development'), ('Frontend Development', 'Frontend Development'), ('UX-UI Development', 'UX-UI Development')], max_length=100, null=True),
+            model_name="employees",
+            name="programming_status",
+            field=models.CharField(
+                choices=[
+                    ("Full Stack", "Full Stack"),
+                    ("Backend Development", "Backend Development"),
+                    ("Frontend Development", "Frontend Development"),
+                    ("UX-UI Development", "UX-UI Development"),
+                ],
+                max_length=100,
+                null=True,
+            ),
         ),
     ]

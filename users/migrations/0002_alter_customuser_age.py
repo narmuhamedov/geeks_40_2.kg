@@ -7,13 +7,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customuser',
-            name='age',
-            field=models.PositiveIntegerField(default=18, null=True, validators=[django.core.validators.MaxValueValidator(90), django.core.validators.MinValueValidator(5)]),
+            model_name="customuser",
+            name="age",
+            field=models.PositiveIntegerField(
+                default=18,
+                null=True,
+                validators=[
+                    django.core.validators.MaxValueValidator(90),
+                    django.core.validators.MinValueValidator(5),
+                ],
+            ),
         ),
     ]

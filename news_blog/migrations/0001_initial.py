@@ -7,23 +7,30 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Employees',
+            name="Employees",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('email', models.EmailField(default='@gmail.com', max_length=254)),
-                ('image', models.ImageField(upload_to='images/')),
-                ('about_emp', models.TextField()),
-                ('programming_status', models.CharField(max_length=100)),
-                ('rezume', models.FileField(upload_to='rezume/')),
-                ('date_of_birth', models.DateField()),
-                ('github', models.URLField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("email", models.EmailField(default="@gmail.com", max_length=254)),
+                ("image", models.ImageField(upload_to="images/")),
+                ("about_emp", models.TextField()),
+                ("programming_status", models.CharField(max_length=100)),
+                ("rezume", models.FileField(upload_to="rezume/")),
+                ("date_of_birth", models.DateField()),
+                ("github", models.URLField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
             ],
         ),
     ]

@@ -7,13 +7,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news_blog', '0005_auto_20240607_1918'),
+        ("news_blog", "0005_auto_20240607_1918"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='reviewsemployees',
-            name='stars',
-            field=models.PositiveIntegerField(null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(5)]),
+            model_name="reviewsemployees",
+            name="stars",
+            field=models.PositiveIntegerField(
+                null=True,
+                validators=[
+                    django.core.validators.MinValueValidator(1),
+                    django.core.validators.MaxValueValidator(5),
+                ],
+            ),
         ),
     ]

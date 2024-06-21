@@ -6,29 +6,32 @@ from django.views import generic
 
 # Кнопка поиска
 class SearchView(generic.ListView):
-    template_name = 'employees/employees_list.html'
-    context_object_name = 'emp'
+    template_name = "employees/employees_list.html"
+    context_object_name = "emp"
     paginate_by = 5
 
     def get_queryset(self):
-        return models.Employees.objects.filter(name__icontains=self.request.GET.get('q')).order_by('-id')
+        return models.Employees.objects.filter(
+            name__icontains=self.request.GET.get("q")
+        ).order_by("-id")
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['q'] = self.request.GET.get('q')
+        context["q"] = self.request.GET.get("q")
         return context
 
 
 # CRUD CREATE-READ-UPDATE-DELETE
 
+
 # edit employees
 class EditEmployeeView(generic.UpdateView):
-    template_name = 'employees/edit_employee.html'
+    template_name = "employees/edit_employee.html"
     form_class = forms.EmployeeForm
-    success_url = '/employees/'
+    success_url = "/employees/"
 
     def get_object(self, **kwargs):
-        emp_id = self.kwargs.get('id')
+        emp_id = self.kwargs.get("id")
         return get_object_or_404(models.Employees, id=emp_id)
 
     def form_valid(self, form):
@@ -57,11 +60,11 @@ class EditEmployeeView(generic.UpdateView):
 
 # delete employee
 class DeleteEmployeeView(generic.DeleteView):
-    template_name = 'employees/confirm_delete.html'
-    success_url = '/employees/'
+    template_name = "employees/confirm_delete.html"
+    success_url = "/employees/"
 
     def get_object(self, **kwargs):
-        emp_id = self.kwargs.get('id')
+        emp_id = self.kwargs.get("id")
         return get_object_or_404(models.Employees, id=emp_id)
 
 
@@ -74,9 +77,9 @@ class DeleteEmployeeView(generic.DeleteView):
 
 # create employee
 class CreateEmployeeView(generic.CreateView):
-    template_name = 'employees/create_emp.html'
+    template_name = "employees/create_emp.html"
     form_class = forms.EmployeeForm
-    success_url = '/employees/'
+    success_url = "/employees/"
 
     def form_valid(self, form):
         print(form.cleaned_data)
@@ -102,11 +105,11 @@ class CreateEmployeeView(generic.CreateView):
 
 # Detail Employees
 class EmployeeDetailView(generic.DetailView):
-    template_name = 'employees/employees_detail.html'
-    context_object_name = 'emp_id'
+    template_name = "employees/employees_detail.html"
+    context_object_name = "emp_id"
 
     def get_object(self, **kwargs):
-        emp_id = self.kwargs.get('id')
+        emp_id = self.kwargs.get("id")
         return get_object_or_404(models.Employees, id=emp_id)
 
 
@@ -124,14 +127,14 @@ class EmployeeDetailView(generic.DetailView):
 
 # List Employees
 class EmployeesListView(generic.ListView):
-    template_name = 'employees/employees_list.html'
-    context_object_name = 'emp'
+    template_name = "employees/employees_list.html"
+    context_object_name = "emp"
     model = models.Employees
-    ordering = ['-id']
+    ordering = ["-id"]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['quote'] = models.Quote.objects.order_by('-id')
+        context["quote"] = models.Quote.objects.order_by("-id")
         return context
 
     # Если только 1 контент на 1 странице
@@ -154,45 +157,47 @@ class EmployeesListView(generic.ListView):
 
 # drink  tags
 
+
 def drink_tags_view(request):
-    if request.method == 'GET':
-        drink_tags = models.Products.objects.filter(tags__name='Вода').order_by('-id')
+    if request.method == "GET":
+        drink_tags = models.Products.objects.filter(tags__name="Вода").order_by("-id")
         return render(
             request,
-            template_name='products/drink_tags.html',
-            context={'drink_tags': drink_tags}
+            template_name="products/drink_tags.html",
+            context={"drink_tags": drink_tags},
         )
 
 
 # all products
 
+
 def all_products(request):
-    if request.method == 'GET':
-        products = models.Products.objects.filter().order_by('-id')
+    if request.method == "GET":
+        products = models.Products.objects.filter().order_by("-id")
         return render(
             request,
-            template_name='products/all_products.html',
-            context={
-                'products': products
-            }
+            template_name="products/all_products.html",
+            context={"products": products},
         )
 
 
 def news_blog_view(request):
-    if request.method == 'GET':
-        return HttpResponse('ВАШ РЕБЕНОК В НАДЕЖНЫХ РУКАХ '
-                            'Вы можете быть уверены в безопасности вашего ребенка, '
-                            'поскольку наш коллектив состоит из большого числа сотрудников, '
-                            'ответственных за создание всех условий для комфортного обучения. '
-                            'а наш офис расположен в престижном бизнес-центре "Виктори", '
-                            'что обеспечивая надежное и безопасное окружение для работы.')
+    if request.method == "GET":
+        return HttpResponse(
+            "ВАШ РЕБЕНОК В НАДЕЖНЫХ РУКАХ "
+            "Вы можете быть уверены в безопасности вашего ребенка, "
+            "поскольку наш коллектив состоит из большого числа сотрудников, "
+            "ответственных за создание всех условий для комфортного обучения. "
+            'а наш офис расположен в престижном бизнес-центре "Виктори", '
+            "что обеспечивая надежное и безопасное окружение для работы."
+        )
 
 
 def about_me_view(request):
-    if request.method == 'GET':
-        return HttpResponse('Всем привет меня зовут Радомир я backend developer')
+    if request.method == "GET":
+        return HttpResponse("Всем привет меня зовут Радомир я backend developer")
 
 
 def geeks_view(request):
-    if request.method == 'GET':
-        return HttpResponse('<h1>Привет GEEKS</h1>')
+    if request.method == "GET":
+        return HttpResponse("<h1>Привет GEEKS</h1>")

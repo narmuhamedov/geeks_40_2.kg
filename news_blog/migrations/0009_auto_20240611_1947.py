@@ -6,38 +6,60 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news_blog', '0008_alter_employees_name'),
+        ("news_blog", "0008_alter_employees_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='employees',
-            name='date_of_birth',
-            field=models.DateField(null=True, verbose_name='Укажите дату рождения'),
+            model_name="employees",
+            name="date_of_birth",
+            field=models.DateField(null=True, verbose_name="Укажите дату рождения"),
         ),
         migrations.AlterField(
-            model_name='employees',
-            name='email',
-            field=models.EmailField(default='@gmail.com', max_length=254, null=True, verbose_name='Укажите почту сотрудника'),
+            model_name="employees",
+            name="email",
+            field=models.EmailField(
+                default="@gmail.com",
+                max_length=254,
+                null=True,
+                verbose_name="Укажите почту сотрудника",
+            ),
         ),
         migrations.AlterField(
-            model_name='employees',
-            name='github',
-            field=models.URLField(null=True, verbose_name='Загрузите ваш гит'),
+            model_name="employees",
+            name="github",
+            field=models.URLField(null=True, verbose_name="Загрузите ваш гит"),
         ),
         migrations.AlterField(
-            model_name='employees',
-            name='image',
-            field=models.ImageField(null=True, upload_to='images/', verbose_name='Загрузите фото'),
+            model_name="employees",
+            name="image",
+            field=models.ImageField(
+                null=True, upload_to="images/", verbose_name="Загрузите фото"
+            ),
         ),
         migrations.AlterField(
-            model_name='employees',
-            name='programming_status',
-            field=models.CharField(choices=[('Full Stack', 'Full Stack'), ('Backend Development', 'Backend Development'), ('Frontend Development', 'Frontend Development'), ('UX-UI Development', 'UX-UI Development')], max_length=100, null=True, verbose_name='Укажите статус программиста'),
+            model_name="employees",
+            name="programming_status",
+            field=models.CharField(
+                choices=[
+                    ("Full Stack", "Full Stack"),
+                    ("Backend Development", "Backend Development"),
+                    ("Frontend Development", "Frontend Development"),
+                    ("UX-UI Development", "UX-UI Development"),
+                ],
+                max_length=100,
+                null=True,
+                verbose_name="Укажите статус программиста",
+            ),
         ),
         migrations.AlterField(
-            model_name='employees',
-            name='rezume',
-            field=models.FileField(blank=True, null=True, upload_to='rezume/', verbose_name='Загрузите резюме'),
+            model_name="employees",
+            name="rezume",
+            field=models.FileField(
+                blank=True,
+                null=True,
+                upload_to="rezume/",
+                verbose_name="Загрузите резюме",
+            ),
         ),
     ]

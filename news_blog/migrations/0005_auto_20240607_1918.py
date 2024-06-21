@@ -7,22 +7,37 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news_blog', '0004_alter_employees_programming_status'),
+        ("news_blog", "0004_alter_employees_programming_status"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='employees',
-            options={'verbose_name': 'сотрудника', 'verbose_name_plural': 'сотрудники'},
+            name="employees",
+            options={"verbose_name": "сотрудника", "verbose_name_plural": "сотрудники"},
         ),
         migrations.CreateModel(
-            name='ReviewsEmployees',
+            name="ReviewsEmployees",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('text', models.TextField()),
-                ('stars', models.PositiveIntegerField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('reviews_emp', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reviews_employees', to='news_blog.employees')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("text", models.TextField()),
+                ("stars", models.PositiveIntegerField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "reviews_emp",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="reviews_employees",
+                        to="news_blog.employees",
+                    ),
+                ),
             ],
         ),
     ]
